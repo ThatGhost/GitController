@@ -21,7 +21,8 @@ namespace GitHandler
                 Commands.Stage(repo, "*");
 
                 // Check if there are staged changes
-                DateTime commitDate = new DateTime(new DateOnly(2006, 1, 2), new TimeOnly(5, 5));
+                //DateTime commitDate = new DateTime(new DateOnly(2006, 1, 2), new TimeOnly(5, 5));
+                DateTime commitDate = GetFirstSunday(2006, 1).AddHours(13);
                 for (int i = 0; i < 8; i++)
                 {
                     var author = new Signature("ThatGhost", "stargamer.me@gmail.com", commitDate);
@@ -37,6 +38,17 @@ namespace GitHandler
             {
                 Console.WriteLine($"Error: {ex.Message}");
             }
+        }
+
+        public static DateTime GetFirstSunday(int year, int month)
+        {
+            DateTime firstDay = new DateTime(year, month, 1);
+
+            // Calculate the first Sunday
+            int daysUntilSunday = ((int)DayOfWeek.Sunday - (int)firstDay.DayOfWeek + 7) % 7;
+            DateTime firstSunday = firstDay.AddDays(daysUntilSunday);
+
+            return firstSunday;
         }
     }
 }
