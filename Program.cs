@@ -21,7 +21,7 @@ namespace GitHandler
                 Commands.Stage(repo, "*");
 
                 // Check if there are staged changes
-                DateTime commitDate = new DateTime(new DateOnly(2006, 1, 1), new TimeOnly(5, 5));
+                DateTime commitDate = new DateTime(new DateOnly(2006, 1, 2), new TimeOnly(5, 5));
                 for (int i = 0; i < 8; i++)
                 {
                     var author = new Signature("ThatGhost", "stargamer.me@gmail.com", commitDate);
