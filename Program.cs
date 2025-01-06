@@ -19,13 +19,17 @@ namespace GitHandler
                 // Open the repository
                 using var repo = new Repository(repoPath);
 
-                //I(repo);
-                //L1(repo);
-                //O(repo);
-                //V(repo);
-                //E1(repo);
-                //T1(repo);
+                I(repo);
+                L1(repo);
+                O(repo);
+                V(repo);
+                E1(repo);
+                T1(repo);
                 U(repo);
+                R(repo);
+                T2(repo);
+                L2(repo);
+                E2(repo);
             }
             catch (Exception ex)
             {
@@ -174,6 +178,90 @@ namespace GitHandler
             }
         }
 
+        private static void R(Repository repo)
+        {
+            DateTime commitDate = GetFirstSunday(year, 1).AddDays(WeeksToDays(32));
+            for (int i = 0; i < 7; i++)
+            {
+                CommitOnDay(commitDate, repo);
+                commitDate = commitDate.AddDays(1);
+            }
+
+            commitDate = GetFirstSunday(year, 1).AddDays(WeeksToDays(33));
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(3);
+            CommitOnDay(commitDate, repo);
+            commitDate = GetFirstSunday(year, 1).AddDays(WeeksToDays(34));
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(3);
+            CommitOnDay(commitDate, repo);
+            commitDate = GetFirstSunday(year, 1).AddDays(WeeksToDays(35) + 1);
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(1);
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(2);
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(1);
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(1);
+            CommitOnDay(commitDate, repo);
+        }
+
+        private static void T2(Repository repo)
+        {
+            DateTime commitDate = GetFirstSunday(year, 1).AddDays(WeeksToDays(37));
+            CommitOnDay(commitDate, repo);
+            commitDate = GetFirstSunday(year, 1).AddDays(WeeksToDays(38));
+            CommitOnDay(commitDate, repo);
+            commitDate = GetFirstSunday(year, 1).AddDays(WeeksToDays(39));
+            for (int i = 0; i < 7; i++)
+            {
+                CommitOnDay(commitDate, repo);
+                commitDate = commitDate.AddDays(1);
+            }
+            commitDate = GetFirstSunday(year, 1).AddDays(WeeksToDays(40));
+            CommitOnDay(commitDate, repo);
+            commitDate = GetFirstSunday(year, 1).AddDays(WeeksToDays(41));
+            CommitOnDay(commitDate, repo);
+        }
+
+        private static void L2(Repository repo)
+        {
+            DateTime commitDate = GetFirstSunday(year, 1).AddDays(WeeksToDays(43));
+            for (int i = 0; i < 7; i++)
+            {
+                CommitOnDay(commitDate, repo);
+                commitDate = commitDate.AddDays(1);
+            }
+            commitDate = GetFirstSunday(year, 1).AddDays(WeeksToDays(44) + 6);
+            CommitOnDay(commitDate, repo);
+            commitDate = GetFirstSunday(year, 1).AddDays(WeeksToDays(45) + 6);
+            CommitOnDay(commitDate, repo);
+
+            Console.WriteLine($"Made the L!");
+        }
+
+        private static void E2(Repository repo)
+        {
+            DateTime commitDate = GetFirstSunday(year, 1).AddDays(WeeksToDays(47));
+            for (int i = 0; i < 7; i++)
+            {
+                CommitOnDay(commitDate, repo);
+                commitDate = commitDate.AddDays(1);
+            }
+            commitDate = GetFirstSunday(year, 1).AddDays(WeeksToDays(48));
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(3);
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(3);
+            CommitOnDay(commitDate, repo);
+            commitDate = GetFirstSunday(year, 1).AddDays(WeeksToDays(49));
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(3);
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(3);
+            CommitOnDay(commitDate, repo);
+        }
 
         private static int WeeksToDays(int weeks)
         {
