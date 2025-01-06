@@ -8,7 +8,7 @@ namespace GitHandler
     class Program
     {
         private static string commitMessage = "I love turtles";
-        private static int year = 2006;
+        private static int year = 2010;
 
         static void Main(string[] args)
         {
@@ -20,16 +20,37 @@ namespace GitHandler
                 using var repo = new Repository(repoPath);
 
                 I(repo);
+                Console.WriteLine($"I!");
+
                 L1(repo);
+                Console.WriteLine($"L!");
+
                 O(repo);
+                Console.WriteLine($"O!");
+
                 V(repo);
+                Console.WriteLine($"V!");
+
                 E1(repo);
+                Console.WriteLine($"E!");
+
                 T1(repo);
+                Console.WriteLine($"T!");
+
                 U(repo);
+                Console.WriteLine($"U!");
+
                 R(repo);
+                Console.WriteLine($"R!");
+
                 T2(repo);
+                Console.WriteLine($"T!");
+
                 L2(repo);
+                Console.WriteLine($"L!");
+
                 E2(repo);
+                Console.WriteLine($"E!");
             }
             catch (Exception ex)
             {
@@ -42,10 +63,9 @@ namespace GitHandler
             DateTime commitDate = GetFirstSunday(year, 1);
             for (int i = 0; i < 7; i++)
             {
-                commitDate = commitDate.AddDays(1);
                 CommitOnDay(commitDate, repo);
+                commitDate = commitDate.AddDays(1);
             }
-            Console.WriteLine($"Made the I!");
         }
 
         private static void L1(Repository repo)
@@ -60,8 +80,6 @@ namespace GitHandler
             CommitOnDay(commitDate, repo);
             commitDate = commitDate.AddDays(7);
             CommitOnDay(commitDate, repo);
-
-            Console.WriteLine($"Made the L!");
         }
 
         private static void O(Repository repo)
@@ -237,8 +255,6 @@ namespace GitHandler
             CommitOnDay(commitDate, repo);
             commitDate = GetFirstSunday(year, 1).AddDays(WeeksToDays(45) + 6);
             CommitOnDay(commitDate, repo);
-
-            Console.WriteLine($"Made the L!");
         }
 
         private static void E2(Repository repo)
