@@ -95,6 +95,7 @@ namespace GitHandler
             }
         }
 
+
         public static DateTime GetFirstSunday(int year, int month)
         {
             DateTime firstDay = new DateTime(year, month, 1);
