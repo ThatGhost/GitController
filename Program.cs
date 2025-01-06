@@ -20,7 +20,8 @@ namespace GitHandler
 
                 //I(repo);
                 //L1(repo);
-                O(repo);
+                //O(repo);
+                V(repo);
             }
             catch (Exception ex)
             {
@@ -69,11 +70,41 @@ namespace GitHandler
             CommitOnDay(commitDate, repo);
             commitDate = commitDate.AddDays(1);
             CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(6);
+            CommitOnDay(commitDate, repo);
             commitDate = commitDate.AddDays(1);
             for (int i = 1; i < 6; i++)
             {
                 commitDate = commitDate.AddDays(1);
                 CommitOnDay(commitDate, repo);
+            }
+        }
+
+        private static void V(Repository repo)
+        {
+            DateTime commitDate = GetFirstSunday(2006, 1).AddDays(WeeksToDays(11));
+            for (int i = 0; i < 3; i++)
+            {
+                CommitOnDay(commitDate, repo);
+                commitDate = commitDate.AddDays(1);
+            }
+            commitDate = commitDate = GetFirstSunday(2006, 1).AddDays(WeeksToDays(12) + 3);
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(1);
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate = GetFirstSunday(2006, 1).AddDays(WeeksToDays(13) + 5);
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(1);
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate = GetFirstSunday(2006, 1).AddDays(WeeksToDays(14) + 3);
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(1);
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate = GetFirstSunday(2006, 1).AddDays(WeeksToDays(15));
+            for (int i = 0; i < 3; i++)
+            {
+                CommitOnDay(commitDate, repo);
+                commitDate = commitDate.AddDays(1);
             }
         }
 
@@ -94,7 +125,6 @@ namespace GitHandler
                 });
             }
         }
-
 
         public static DateTime GetFirstSunday(int year, int month)
         {
