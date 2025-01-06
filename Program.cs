@@ -23,7 +23,10 @@ namespace GitHandler
                 // Check if there are staged changes
                 var author = new Signature("ThatGhost", "stargamer.me@gmail.com", DateTime.Now);
                 var committer = author; // Same as the author
-                repo.Commit(commitMessage, author, committer);
+                repo.Commit(commitMessage, author, committer, new CommitOptions
+                {
+                    AllowEmptyCommit = true
+                });
                 Console.WriteLine("Changes committed successfully!");
 
                 // Pull latest changes
