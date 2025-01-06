@@ -4,10 +4,34 @@ using LibGit2Sharp;
 
 namespace GitHandler
 {
+
     class Program
     {
         static void Main(string[] args)
         {
+            var pullOptions = new PullOptions
+            {
+                FetchOptions = new FetchOptions
+                {
+                    CredentialsProvider = (url, usernameFromUrl, types) =>
+                        new UsernamePasswordCredentials
+                        {
+                            Username = "ThatGhost", // Your Git username
+                            Password = "your-access-token" // Your password or personal access token (PAT)
+                        }
+                }
+            };
+
+            var pushOptions = new PushOptions
+            {
+                CredentialsProvider = (url, usernameFromUrl, types) =>
+                    new UsernamePasswordCredentials
+                    {
+                        Username = "ThatGhost", // Your Git username
+                        Password = "your-access-token" // Your password or PAT
+                    }
+            };
+
             string repoPath = @"C:\Users\starg\source\repos\GitControll"; // Path to your Git repository
             string commitMessage = "I love turtles";
             string branchName = "master"; // Replace with your branch name
