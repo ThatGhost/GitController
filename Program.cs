@@ -21,14 +21,12 @@ namespace GitHandler
                 Commands.Stage(repo, "*");
 
                 // Check if there are staged changes
-
-                var author = new Signature("ThatGhost", "stargamer.me@gmail.com", new DateTime(new DateOnly(2007,1,1),new TimeOnly(1,1)));
-                var committer = author;
+                var author = new Signature("ThatGhost", "stargamer.me@gmail.com", DateTime.Now);
+                var committer = author; // Same as the author
                 repo.Commit(commitMessage, author, committer, new CommitOptions
                 {
                     AllowEmptyCommit = true
                 });
-
                 Console.WriteLine("Changes committed successfully!");
             }
             catch (Exception ex)
