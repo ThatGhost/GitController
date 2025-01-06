@@ -7,36 +7,91 @@ namespace GitHandler
 
     class Program
     {
+        private static string commitMessage = "I love turtles";
+
         static void Main(string[] args)
         {
             string repoPath = @"C:\Users\starg\source\repos\GitControll"; // Path to your Git repository
-            string commitMessage = "I love turtles";
 
             try
             {
                 // Open the repository
                 using var repo = new Repository(repoPath);
 
-                // Stage all changes
-                Commands.Stage(repo, "*");
-
-                // Check if there are staged changes
-                //DateTime commitDate = new DateTime(new DateOnly(2006, 1, 2), new TimeOnly(5, 5));
-                DateTime commitDate = GetFirstSunday(2006, 1).AddHours(13);
-                for (int i = 0; i < 8; i++)
-                {
-                    var author = new Signature("ThatGhost", "stargamer.me@gmail.com", commitDate);
-                    var committer = author; // Same as the author
-                    repo.Commit(commitMessage, author, committer, new CommitOptions
-                    {
-                        AllowEmptyCommit = true
-                    });
-                }
-                Console.WriteLine($"Changes committed successfully! {commitDate}");
+                //I(repo);
+                //L1(repo);
+                O(repo);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
+        private static void I(Repository repo)
+        {
+            DateTime commitDate = GetFirstSunday(2006, 1);
+            for (int i = 0; i < 7; i++)
+            {
+                commitDate = commitDate.AddDays(1);
+                CommitOnDay(commitDate, repo);
+            }
+            Console.WriteLine($"Made the I!");
+        }
+
+        private static void L1(Repository repo)
+        {
+            DateTime commitDate = GetFirstSunday(2006, 1).AddDays(WeeksToDays(2) - 1);
+            for (int i = 0; i < 7; i++)
+            {
+                commitDate = commitDate.AddDays(1);
+                CommitOnDay(commitDate, repo);
+            }
+            commitDate = commitDate.AddDays(7);
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(7);
+            CommitOnDay(commitDate, repo);
+
+            Console.WriteLine($"Made the L!");
+        }
+
+        private static void O(Repository repo)
+        {
+            DateTime commitDate = GetFirstSunday(2006, 1).AddDays(WeeksToDays(6));
+            for (int i = 1; i < 6; i++)
+            {
+                commitDate = commitDate.AddDays(1);
+                CommitOnDay(commitDate, repo);
+            }
+            commitDate = commitDate.AddDays(2);
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(6);
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(1);
+            CommitOnDay(commitDate, repo);
+            commitDate = commitDate.AddDays(1);
+            for (int i = 1; i < 6; i++)
+            {
+                commitDate = commitDate.AddDays(1);
+                CommitOnDay(commitDate, repo);
+            }
+        }
+
+        private static int WeeksToDays(int weeks)
+        {
+            return weeks * 7;
+        }
+
+        private static void CommitOnDay(DateTime dateTime, Repository repo)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                var author = new Signature("ThatGhost", "stargamer.me@gmail.com", dateTime);
+                var committer = author; // Same as the author
+                repo.Commit(commitMessage, author, committer, new CommitOptions
+                {
+                    AllowEmptyCommit = true
+                });
             }
         }
 
@@ -48,7 +103,7 @@ namespace GitHandler
             int daysUntilSunday = ((int)DayOfWeek.Sunday - (int)firstDay.DayOfWeek + 7) % 7;
             DateTime firstSunday = firstDay.AddDays(daysUntilSunday);
 
-            return firstSunday;
+            return firstSunday.AddHours(13);
         }
     }
 }
